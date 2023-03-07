@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
@@ -28,8 +29,12 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $notification = array(
+            'message' => 'Logged in Successfully', 
+            'alert-type' => 'info'
+        );
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended(RouteServiceProvider::HOME)->with($notification);
     }
 
     /**
@@ -42,7 +47,11 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        $notification = array(
+            'message' => 'Logged in Successfully', 
+            'alert-type' => 'info'
+        );
 
-        return redirect('/');
+        return redirect('/')->with($notification);
     }
 }

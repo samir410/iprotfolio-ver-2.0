@@ -22,7 +22,11 @@ class VerifyEmailController extends Controller
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
+        $notification = array(
+            'message' => 'Successfully verified email address', 
+            'alert-type' => 'info'
+        );
 
-        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
+        return redirect()->intended(RouteServiceProvider::HOME.'?verified=1')->with($notification);;
     }
 }

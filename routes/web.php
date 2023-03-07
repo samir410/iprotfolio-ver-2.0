@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('admin.index');
+})->middleware(['auth', 'verified'])->name('admin.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::controller(AdminController::class)->group(function () {
+    Route::get('/admin/logout', 'destroy')->name('admin.logout');
+    Route::get('/admin-user-profile', 'profile')->name('admin.profile');
+    Route::get('/admin-user-edit','edit_profile')->name('admin.edit_profile');
+    Route::post('/store/profile','store_profile')->name('admin.store.profile');
+
+
+});
 require __DIR__.'/auth.php';
+
