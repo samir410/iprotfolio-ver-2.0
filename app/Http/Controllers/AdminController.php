@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -50,6 +51,10 @@ class AdminController extends Controller
         if ($request->file('profile_image')) {
            $file = $request->file('profile_image');
 
+            if (!empty($data->profile_image)) {
+        @unlink(public_path('upload/admin_images/'.$data->profile_image));
+    }
+
            $filename = date('YmdHi').$file->getClientOriginalName();
            $file->move(public_path('upload/admin_images'),$filename);
            $data['profile_image'] = $filename;
@@ -66,33 +71,34 @@ class AdminController extends Controller
 
      
     }
-    // public function ChangePassword(){
+    public function ChangePassword(){
 
-    //     return view('admin.admin_change_password');
+        return view('admin.change_password');
 
-    // }// End Method
+    }// End Method
 
 
-    // public function UpdatePassword(Request $request){
+    public function UpdatePassword(Request $request){
 
-    //     $validateData = $request->validate([
-    //         'oldpassword' => 'required',
-    //         'newpassword' => 'required',
-    //         'confirm_password' => 'required|same:newpassword',
+        $validateData = $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
+            'confirm_password' => 'required|same:newpassword',
 
-    //     ]);
+        ]);
 
-    //     $hashedPassword = Auth::user()->password;
-    //     if (Hash::check($request->oldpassword,$hashedPassword )) {
-    //         $users = User::find(Auth::id());
-    //         $users->password = bcrypt($request->newpassword);
-    //         $users->save();
+        $hashedPassword = Auth::user()->password;
+        if (Hash::check($request->oldpassword,$hashedPassword )) {
+            $users = User::find(Auth::id());
+            $users->password = bcrypt($request->newpassword);
+            $users->save();
 
-    //         session()->flash('message','Password Updated Successfully');
-    //         return redirect()->back();
-    //     } else{
-    //         session()->flash('message','Old password is not match');
-    //         return redirect()->back();
-    //     }
+            session()->flash('message','Password Updated Successfully');
+            return redirect()->back();
+        } else{
+            session()->flash('message','Old password is not match');
+            return redirect()->back();
+        }
+    }
 
 }
