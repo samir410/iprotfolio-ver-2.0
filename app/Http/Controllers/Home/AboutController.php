@@ -65,8 +65,11 @@ class AboutController extends Controller
      public function UpdateAbout(Request $request){
 
         $about_id = $request->id;
+        $about = About::find($about_id);
 
         if ($request->file('about_image')) {
+            $img = $about->about_image;
+            unlink($img);
             $image = $request->file('about_image');
             $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
 

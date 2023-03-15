@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\About;
+use App\Models\protfolio;
 
 class FrontController extends Controller
 {
@@ -19,12 +20,23 @@ class FrontController extends Controller
         return view('home.pages.services');
     }
     public function protfolio(){
-        return view('home.pages.portfolio');
+        $protfolios=protfolio::get()->all();
+        return view('home.pages.portfolio',compact('protfolios'));
     }
     public function blog(){
         return view('home.pages.blog');
     }
+
+
     public function contact_us(){
         return view('home.pages.contact_us');
     }
+    public function protfolio_details($id){
+        
+        $data = protfolio::findorfail($id);
+
+
+        return view('home.pages.protfolio_details',compact('data'));
+    }
+   
 }

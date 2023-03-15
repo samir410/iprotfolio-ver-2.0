@@ -71,6 +71,13 @@
             <ul class="sub-menu" aria-expanded="false">
                 <li><a href="{{ route('HomeSliders') }}">Home slide</a></li>
             </ul>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{ route('massages') }}">Read message</a></li>
+            </ul>
+            <ul class="sub-menu" aria-expanded="false">
+                <li><a href="{{ route('add_new_protfolio') }}">Add project</a></li>
+                <li><a href="{{ route('view_project_list') }}">view projects</a></li>
+            </ul>
         </li>
 
         <li class="menu-title">Components</li>

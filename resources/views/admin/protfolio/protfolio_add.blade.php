@@ -10,17 +10,32 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="card-title">About Page </h4>
-            
-            <form method="post" action="{{ route('update.about') }}" enctype="multipart/form-data">
-                @csrf
+            <h4 class="card-title">protfolio Page </h4>
+            @if(session('status1'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>{{session('status1')}}</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                   <span aria-hidden="true">&times;</span>
+                 </button>
+           </div>
+           @endif
 
-                <input type="hidden" name="id" value="{{ $aboutpage->id }}">
+           @if ($errors->any())
+           <div class="alert alert-danger">
+             <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach
+             </ul>
+            </div>
+           @endif
+            <form method="post" action="{{ route('store.project') }}" enctype="multipart/form-data">
+                @csrf
 
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
-                    <input name="title" class="form-control" type="text" value="{{ $aboutpage->title }}"  id="example-text-input">
+                    <input name="title" required="title"  class="form-control" type="text" id="example-text-input">
                 </div>
             </div>
             <!-- end row -->
@@ -28,50 +43,42 @@
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Short Title </label>
                 <div class="col-sm-10">
-                    <input name="short_title" class="form-control" type="text" value="{{ $aboutpage->short_title }}"  id="example-text-input">
+                    <input name="short_title" required="title"  class="form-control" type="text"  id="example-text-input">
                 </div>
             </div>
             <!-- end row -->
-
-
-              <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Short Description </label>
-                <div class="col-sm-10">
-                    <textarea required="" name="short_description"  class="form-control" rows="5">
-                 {{ $aboutpage->short_description }}
-                    </textarea>
-                </div>
-            </div>
-            <!-- end row -->
-
 
             <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Long Description </label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">Description </label>
                 <div class="col-sm-10">
-                    <textarea id="elm1" name="long_description">
-                       {{ $aboutpage->long_description }}
+                    <textarea id="elm1" required="describtion"  name="describtion">
+                      
                     </textarea>
                 </div>
             </div>
+            <!-- end row -->
+
+
+    
             <!-- end row -->
 
              <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">About Image </label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">Upload Image </label>
                 <div class="col-sm-10">
-           <input name="about_image" class="form-control" type="file" id="image">
+                     <input name="protfolio_image" class="form-control" type="file" id="image">
                 </div>
             </div>
             <!-- end row -->
 
 
-              <div class="row mb-3">
+              {{-- <div class="row mb-3">
                  <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
                 <div class="col-sm-10">
                     <img id="showImage" class="rounded avatar-lg" src="{{ (!empty($aboutpage->about_image))? url( $aboutpage->about_image):url('upload/no_image.jpg') }}" alt="Card image cap">
                 </div>
-            </div>
+            </div> --}}
             <!-- end row -->
-        <input type="submit" class="btn btn-info waves-effect waves-light" value="Update About Page">
+        <input type="submit" class="btn btn-info waves-effect waves-light" value="add">
             </form>
              
            

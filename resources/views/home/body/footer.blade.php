@@ -5,7 +5,7 @@
                 <div class="footer__widget">
                     <div class="fw-title">
                         <h5 class="sub-title">Contact us</h5>
-                        <h4 class="title">+81383 766 284</h4>
+                        <h4 class="title">+8801772576756</h4>
                     </div>
                     <div class="footer__widget__text">
                         <p>There are many variations of passages of lorem ipsum
@@ -18,11 +18,11 @@
                 <div class="footer__widget">
                     <div class="fw-title">
                         <h5 class="sub-title">my address</h5>
-                        <h4 class="title">AUSTRALIA</h4>
+                        <h4 class="title">Bangladesh</h4>
                     </div>
                     <div class="footer__widget__address">
-                        <p>Level 13, 2 Elizabeth Steereyt set <br> Melbourne, Victoria 3000</p>
-                        <a href="mailto:noreply@envato.com" class="mail">noreply@envato.com</a>
+                        <p>Shubhadya purbo para <br> Keranigonj, Dhaka-1310</p>
+                        <a href="samirhossain924@yahoo.com" class="mail">samirhossain924@yahoo.com</a>
                     </div>
                 </div>
             </div>
@@ -33,13 +33,12 @@
                         <h4 class="title">socially connect</h4>
                     </div>
                     <div class="footer__widget__social">
-                        <p>Lorem ipsum dolor sit amet enim. <br> Etiam ullamcorper.</p>
+                       
                         <ul class="footer__social__list">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                            <li><a href="https://www.facebook.com/santobepu"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="https://github.com/samir410"><i class="fab fa-github"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/samir-hossain-1a453a206/"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="https://www.instagram.com/santobepu/"><i class="fab fa-instagram"></i></a></li>
                         </ul>
                     </div>
                 </div>

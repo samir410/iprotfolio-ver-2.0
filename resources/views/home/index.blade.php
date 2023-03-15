@@ -1,91 +1,16 @@
 @extends('home.main_master')
+@section('title')
+Welcome to my protfolio
+@endsection
 @section('contents')
 <main>
 
     <!-- banner-area -->
-    <section class="banner">
-        <div class="container custom-container">
-            <div class="row align-items-center justify-content-center justify-content-lg-between">
-                <div class="col-lg-6 order-0 order-lg-2">
-                    <div class="banner__img text-center text-xxl-end">
-                        <img src="{{ asset('frontend/assets/img/banner/banner_img.png')}}" alt="">
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-6">
-                    <div class="banner__content">
-                        <h2 class="title wow fadeInUp" data-wow-delay=".2s"><span>I will give you Best</span> <br> Product in the shortest time.</h2>
-                        <p class="wow fadeInUp" data-wow-delay=".4s">I'm a Rasalina based product design & visual designer focused on crafting clean & user‑friendly experiences</p>
-                        <a href="{{ route('home.about_me') }}" class="btn banner__btn wow fadeInUp" data-wow-delay=".6s">more about me</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll__down">
-            <a href="#aboutSection" class="scroll__link">Scroll down</a>
-        </div>
-        <div class="banner__video">
-            <a href="https://www.youtube.com/watch?v=XHOmBV4js_E" class="popup-video"><i class="fas fa-play"></i></a>
-       
-    </section>
+  @include('home.include.banner_page_include_section_index')
     <!-- banner-area-end -->
 
     <!-- about-area -->
-    <section id="aboutSection" class="about">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <ul class="about__icons__wrap">
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/xd_light.png')}}" alt="XD">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/xd.png')}}" alt="XD">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/skeatch_light.png')}}" alt="Skeatch">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/skeatch.png')}}" alt="Skeatch">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/illustrator_light.png')}}" alt="Illustrator">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/illustrator.png')}}" alt="Illustrator">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/hotjar_light.png')}}" alt="Hotjar">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/hotjar.png')}}" alt="Hotjar">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/invision_light.png')}}" alt="Invision">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/invision.png')}}" alt="Invision">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/photoshop_light.png')}}" alt="Photoshop">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/photoshop.png')}}" alt="Photoshop">
-                        </li>
-                        <li>
-                            <img class="light" src="{{ asset('frontend/assets/img/icons/figma_light.png')}}" alt="Figma">
-                            <img class="dark" src="{{ asset('frontend/assets/img/icons/figma.png')}}" alt="Figma">
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about__content">
-                        <div class="section__title">
-                            <span class="sub-title">01 - About me</span>
-                            <h2 class="title">I have transform your ideas into remarkable digital products</h2>
-                        </div>
-                        <div class="about__exp">
-                            <div class="about__exp__icon">
-                                <img src="{{ asset('frontend/assets/img/icons/about_icon.png')}}"alt="">
-                            </div>
-                            <div class="about__exp__content">
-                                <p>20+ Years Experience In this game, Means <br> Product Designing</p>
-                            </div>
-                        </div>
-                        <p class="desc">I love to work in User Experience & User Interface designing. Because I love to solve the design problem and find easy and better solutions to solve it. I always try my best to make good user interface with the best user experience. I have been working as a UX Designer</p>
-                        <a href="{{ route('home.about_me') }}" class="btn">Download my resume</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('home.include.about_page_include_section_index')
     <!-- about-area-end -->
 
     <!-- services-area -->
@@ -290,6 +215,9 @@
     <!-- work-process-area-end -->
 
     <!-- portfolio-area -->
+    @php
+    $protfolios = App\Models\protfolio::get()->all();
+    @endphp
     <section class="portfolio">
         <div class="container">
             <div class="row justify-content-center">
@@ -300,7 +228,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            {{-- <div class="row justify-content-center">
                 <div class="col-xl-10 col-lg-12">
                     <ul class="nav nav-tabs portfolio__nav" id="portfolioTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -332,31 +260,35 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="tab-content" id="portfolioTabContent">
+            {{-- @foreach($protfolios as $protfolio) --}}
+    
             <div class="tab-pane show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <div class="container">
                     <div class="row gx-0 justify-content-center">
                         <div class="col">
                             <div class="portfolio__active">
+                                @foreach($protfolios as $protfolio)
                                 <div class="portfolio__item">
                                     <div class="portfolio__thumb">
-                                        <img src="assets/img/portfolio/portfolio_img01.jpg" alt="">
+                                        <img src="{{ $protfolio->protfolio_image}}" alt="">
                                     </div>
                                     <div class="portfolio__overlay__content">
-                                        <span>Apps Design</span>
-                                        <h4 class="title"><a href="portfolio-details.html">Banking Management System</a></h4>
-                                        <a href="portfolio-details.html" class="link">Case Study</a>
+                                        <span>{{ $protfolio->title }}</span>
+                                        <h4 class="title"><a href="portfolio-details.html">{{ $protfolio->short_title }}</a></h4>
+                                        <a href="{{ route('home.protfolio.details',$protfolio->id) }}" class="link">Case Study</a>
                                     </div>
                                 </div>
-                                <div class="portfolio__item">
+                                @endforeach
+                                {{-- <div class="portfolio__item">
                                     <div class="portfolio__thumb">
                                         <img src="assets/img/portfolio/portfolio_img02.jpg" alt="">
                                     </div>
                                     <div class="portfolio__overlay__content">
                                         <span>Web Design</span>
-                                        <h4 class="title"><a href="portfolio-details.html">Banking Management System</a></h4>
+                                        <h4 class="title"><a href="portfolio-details.html">{{ $protfolio->short_title }}</a></h4>
                                         <a href="portfolio-details.html" class="link">Case Study</a>
                                     </div>
                                 </div>
@@ -409,13 +341,14 @@
                                         <h4 class="title"><a href="portfolio-details.html">Banking Management System</a></h4>
                                         <a href="portfolio-details.html" class="link">Case Study</a>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="website" role="tabpanel" aria-labelledby="website-tab">
+         
+            {{-- <div class="tab-pane" id="website" role="tabpanel" aria-labelledby="website-tab">
                 <div class="container">
                     <div class="row gx-0 justify-content-center">
                         <div class="col">
@@ -894,7 +827,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </section>
     <!-- portfolio-area-end -->

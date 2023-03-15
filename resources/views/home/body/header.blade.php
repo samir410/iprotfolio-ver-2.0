@@ -1,3 +1,8 @@
+@php
+
+$route = Route::current()->getName();
+@endphp
+
 <header>
     <div id="sticky-header" class="menu__area transparent-header">
         <div class="container custom-container">
@@ -12,16 +17,16 @@
                             </div>
                             <div class="navbar__wrap main__menu d-none d-xl-flex">
                                 <ul class="navigation">
-                                    <li class="active"><a href="{{ route('home') }}">Home</a></li>
-                                    <li><a href="{{ route('home.about_me') }}">About</a></li>
-                                    <li><a href="{{ route('home.services') }}">Services</a></li>
-                                    <li class="menu-item-has-children"><a href="{{ route('home.protfolio') }}">Portfolio</a>
+                                    <li class="{{ ($route == 'home')? 'active' : '' }}" ><a href="{{ route('home') }}">Home</a></li>
+                                    <li class="{{ ($route == 'home.about_me')? 'active' : '' }}" ><a href="{{ route('home.about_me') }}">About</a></li>
+                                    <li class="{{ ($route == 'home.services')? 'active' : '' }}" ><a href="{{ route('home.services') }}">Services</a></li>
+                                    <li class="{{ ($route == 'home.protfolio')? 'active' : '' }}" class="menu-item-has-children"><a href="{{ route('home.protfolio') }}">Portfolio</a>
                                         <ul class="sub-menu">
-                                            <li><a href="">Portfolio</a></li>
-                                            <li><a href="portfolio-details.html">Portfolio Details</a></li>
+                                            <li><a href="{{ route('home.protfolio') }}">Portfolio</a></li>
+                                            {{-- <li><a href="{{ route('home.protfolio.details') }}">Portfolio Details</a></li> --}}
                                         </ul>
                                     </li>
-                                    <li class="menu-item-has-children"><a href={{ route('home.blog') }}>Our Blog</a>
+                                    <li class="{{ ($route == 'home.blog')? 'active' : '' }}" class="menu-item-has-children"><a href={{ route('home.blog') }}>Our Blog</a>
                                         <ul class="sub-menu">
                                             <li><a href="{{ route('home.about_me') }}">Our News</a></li>
                                             <li><a href="blog-details.html">News Details</a></li>

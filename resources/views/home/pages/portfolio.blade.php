@@ -1,4 +1,7 @@
 @extends('home.main_master')
+@section('title')
+Protfolio page
+@endsection
 @section('contents')
 <main>
 
@@ -37,48 +40,34 @@
                     </div>
                 </div>
             </div>
+
+ 
             <div class="portfolio__inner__active">
+                @foreach($protfolios as $value)
                 <div class="portfolio__inner__item grid-item cat-two cat-three">
+                    {{-- @foreach($protfolios as $value) --}}
                     <div class="row gx-0 align-items-center">
+                   
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__thumb">
                                 <a href="portfolio-details.html">
-                                    <img src="{{ asset('frontend/assets/img/portfolio/portfolio__img01.jpg')}}" alt="">
+                                    <img src="{{url($value->protfolio_image)}}" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__content">
-                                <h2 class="title"><a href="portfolio-details.html">Ecommerce Product Apps</a></h2>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                                <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
-                                    hidden in the middle of text</p>
-                                <a href="portfolio-details.html" class="link">View Case Study</a>
+                                <h2 class="title"><a href="portfolio-details.html">{{ $value->short_title }}</a></h2>
+                                <p>{!! $value->describtion !!}</p>
+                                <a href="{{ route('home.protfolio.details',$value->id) }}" class="link">View Case Study</a>
                             </div>
                         </div>
+                                        
+            
                     </div>
+                    {{-- @endforeach --}}
                 </div>
-                <div class="portfolio__inner__item grid-item cat-one cat-three cat-four">
-                    <div class="row gx-0 align-items-center">
-                        <div class="col-lg-6 col-md-10">
-                            <div class="portfolio__inner__thumb">
-                                <a href="portfolio-details.html">
-                                    <img src="{{ asset('frontend/assets/img/portfolio/portfolio__img02.jpg')}}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-10">
-                            <div class="portfolio__inner__content">
-                                <h2 class="title"><a href="portfolio-details.html">Cryptocurrency web Application</a></h2>
-                                <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
-                                <p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing
-                                    hidden in the middle of text</p>
-                                <a href="portfolio-details.html" class="link">View Case Study</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio__inner__item grid-item cat-one cat-four">
+                {{-- <div class="portfolio__inner__item grid-item cat-one cat-four">
                     <div class="row gx-0 align-items-center">
                         <div class="col-lg-6 col-md-10">
                             <div class="portfolio__inner__thumb">
@@ -117,8 +106,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                @endforeach
             </div>
+
+          
             <div class="pagination-wrap">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">

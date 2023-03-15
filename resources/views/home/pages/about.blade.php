@@ -1,4 +1,7 @@
 @extends('home.main_master')
+@section('title')
+About me
+@endsection
 @section('contents')
 <main>
 

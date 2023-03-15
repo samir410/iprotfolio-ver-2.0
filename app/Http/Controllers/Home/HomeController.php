@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\HomeSlider;
+
+
 use Image;
 
 class HomeController extends Controller
@@ -24,7 +25,7 @@ class HomeController extends Controller
         $image = $request->file('home_slide');
         $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();  // 3434343443.jpg
 
-        Image::make($image)->resize(636,852)->save('upload/home_slide/'.$name_gen);
+        Image::make($image)->resize(700,870)->save('upload/home_slide/'.$name_gen);
         $save_url = 'upload/home_slide/'.$name_gen;
 
         HomeSlider::findOrFail($slide_id)->update([
@@ -59,6 +60,7 @@ class HomeController extends Controller
     } // end Else
 
  } // End Method 
+
 
 
 }
